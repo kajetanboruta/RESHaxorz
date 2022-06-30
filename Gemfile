@@ -51,6 +51,8 @@ gem "bootsnap", ">= 1.4.4", require: false
 group :development, :test do
   # See https://edgeguides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
+  gem 'pry', '~> 0.13.1'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -66,6 +68,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'rspec-rails'
   gem "capybara", ">= 3.26"
   gem "selenium-webdriver", ">= 4.0.0"
   gem "webdrivers"
