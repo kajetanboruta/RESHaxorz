@@ -22,6 +22,7 @@ class TodoItemsController < ApplicationController
   # POST /todo_items or /todo_items.json
   def create
     @todo_item = TodoItem.new(todo_item_params)
+    @todo_item.creator = current_user.id
 
     respond_to do |format|
       if @todo_item.save

@@ -1,26 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Todo items</h1>
-
 <div id="todo_items">
-  Open:
+  <%= turbo_frame_tag "todo" do %>
   <div id="open">
-    <% @todo_items.where(status: false).each do |todo_item| %>
-      <div style="border:1px solid green; display: inline-block; margin-bottom: 5px;">
+    <% @todo_items.each do |todo_item| %>
+      <div style="border:2px solid; display: inline-block; margin-bottom: 5px;">
         <%= render todo_item %>
         <%= link_to "Edit", edit_todo_item_path(todo_item) %>
       </div>
     <% end %>
   </div>
-  Closed:
-  <div id="open">
-    <% @todo_items.where(status: true).each do |todo_item| %>
-      <div style="border:1px solid red; display: inline-block; margin-bottom: 5px;">
-        <%= render todo_item %>
-        <%= link_to "Edit", edit_todo_item_path(todo_item) %>
-      </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>
-
 <%= link_to "New todo item", new_todo_item_path %>

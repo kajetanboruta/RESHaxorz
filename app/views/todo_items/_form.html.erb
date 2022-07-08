@@ -22,11 +22,6 @@
   </div>
 
   <div>
-    <%= form.label :creator_id, style: "display: block" %>
-    <%= form.collection_select :creator_id, User.order(:email), :id, :email %>
-  </div>
-
-  <div>
     <%= form.label :cc_id, style: "display: block" %>
     <%= form.collection_select :cc_id, User.order(:email), :id, :email %>
   </div>
