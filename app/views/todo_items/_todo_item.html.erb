@@ -1,0 +1,32 @@
+<div id="<%= dom_id todo_item %>">
+  <p>
+    <strong>Status:</strong>
+    
+    <% if todo_item.status %>
+    closed
+    <% else %>
+    open
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= link_to todo_item.description, todo_item %>
+  </p>
+
+  <p>
+    <strong>Creator:</strong>
+    <%= User.find(todo_item.creator_id).email %>
+  </p>
+
+  <p>
+    <strong>Cc:</strong>
+    <%= User.find(todo_item.cc_id).email %>
+  </p>
+
+  <p>
+    <strong>Created at:</strong>
+    <%= todo_item.created_at %>
+  </p>
+
+</div>
