@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_30_122345) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_08_110002) do
   create_table "event_store_events", force: :cascade do |t|
     t.string "event_id", limit: 36, null: false
     t.string "event_type", null: false
@@ -34,10 +34,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_122345) do
     t.index ["stream", "position"], name: "index_event_store_events_in_streams_on_stream_and_position", unique: true
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "todo_items", force: :cascade do |t|
+    t.boolean "status"
     t.string "description"
+    t.integer "creator_id", null: false
+    t.integer "cc_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cc_id"], name: "index_todo_items_on_cc_id"
+    t.index ["creator_id"], name: "index_todo_items_on_creator_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "todo_items", "users", column: "cc_id"
+  add_foreign_key "todo_items", "users", column: "creator_id"
 end
