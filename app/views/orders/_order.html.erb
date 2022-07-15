@@ -1,0 +1,17 @@
+<div id="<%= dom_id order %>">
+  <p>
+    <strong>Quantity:</strong>
+    <%= order.quantity %>
+  </p>
+
+  <p>
+    <strong>Customer:</strong>
+    <%= User.find(order.customer_id).email %>
+  </p>
+
+  <p>
+    <strong>Item:</strong>
+    <%= Item.find(order.item_id).name %>
+  </p>
+
+</div>
